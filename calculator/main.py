@@ -38,14 +38,24 @@ operation_symbol = input("Pick an operation from the line above: ")
 num2 = int(input("What's the second number: "))
 
 calculation_func = operations[operation_symbol]
-first_answer = calculation_func(num1, num2)
+answer = calculation_func(num1, num2)
 
-print(f"{num1} {operation_symbol} {num2} = {first_answer}")
+print(f"{num1} {operation_symbol} {num2} = {answer}")
 
-operation_symbol = input("Pick another operation: ")
-num3 = int(input("What's the next number: "))
 
-calculation_func = operations[operation_symbol]
-second_answer = calculation_func(first_answer, num3)
+while True:
+    cont = input(
+        f"type 'y' to continue calculating with the {answer} or type 'n' to exit.: ")
+    if cont == 'n':
+        print("Thank you for using calculator")
+        break
 
-print(f"{first_answer} {operation_symbol} {num3} = {second_answer}")
+    operation_symbol = input("Pick another operation: ")
+    num3 = int(input("What's the next number: "))
+
+    calculation_func = operations[operation_symbol]
+    second_answer = calculation_func(answer, num3)
+
+    print(f"{answer} {operation_symbol} {num3} = {second_answer}")
+
+    answer = second_answer
