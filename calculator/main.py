@@ -31,31 +31,40 @@ operations = {
     "/": divide
 }
 
-num1 = int(input("What's the first number: "))
-for key in operations:
-    print(key)
-operation_symbol = input("Pick an operation from the line above: ")
-num2 = int(input("What's the second number: "))
 
-calculation_func = operations[operation_symbol]
-answer = calculation_func(num1, num2)
+def calculator():
+    num1 = int(input("What's the first number: "))
+    for key in operations:
+        print(key)
+    # operation_symbol = input("Pick an operation from the line above: ")
+    # num2 = int(input("What's the second number: "))
 
-print(f"{num1} {operation_symbol} {num2} = {answer}")
+    # calculation_func = operations[operation_symbol]
+    # answer = calculation_func(num1, num2)
+
+    # print(f"{num1} {operation_symbol} {num2} = {answer}")
+    should_continue = True
+
+    while should_continue:
+
+        operation_symbol = input("Pick an operation: ")
+        num2 = int(input("What's the next number: "))
+
+        calculation_func = operations[operation_symbol]
+        answer = calculation_func(num1, num2)
+
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+
+        cont = input(
+            f"Type 'y' to continue calculating with the {answer} or type 'end' to exit or 'new' to start a new calculation: ")
+
+        if cont == 'new':
+            should_continue = False
+            calculator()
+        if cont == "end":
+            break
+
+        num1 = answer
 
 
-while True:
-    cont = input(
-        f"type 'y' to continue calculating with the {answer} or type 'n' to exit.: ")
-    if cont == 'n':
-        print("Thank you for using calculator")
-        break
-
-    operation_symbol = input("Pick another operation: ")
-    num3 = int(input("What's the next number: "))
-
-    calculation_func = operations[operation_symbol]
-    second_answer = calculation_func(answer, num3)
-
-    print(f"{answer} {operation_symbol} {num3} = {second_answer}")
-
-    answer = second_answer
+calculator()
